@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title>ejs_sample</title>
+  </head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <body>
+    <%# ヘッダー %>
+    <h1>今期のアニメ</h1>
+    <%# アニメ数分ループ %>
+    <% for (anime of animes) { %>
+      <div class="div_block">
+        <div class="div_header">
+          <a href="<%= anime.public_url %>"><%= anime.title %></a>
+        </div>
+        <% if (!!anime.ogp.og_image) { %>
+          <img src="<%= anime.ogp.og_image %>" />
+        <% } else { %>
+          <div class="nodata">no data</div>
+        <% } %>  
+        <p>
+          <% if (!!anime.ogp.og_description) { %>
+            <%= anime.ogp.og_description %>
+          <% } else { %>
+            no data
+          <% } %>
+        </p>
+      </div>
+    <% } %>
+  </body>
+</html>
